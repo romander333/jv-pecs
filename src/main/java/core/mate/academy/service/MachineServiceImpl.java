@@ -8,22 +8,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MachineServiceImpl<T extends Machine> implements MachineService<T> {
+
     @Override
     public List<T> getAll(Class<? extends T> type) {
-        List<T> machines = new ArrayList<>();
-
+        MachineProducer<? extends Machine> producer;
         if (type == Bulldozer.class) {
-            machines.add((T) new Bulldozer());
-            machines.add((T) new Bulldozer());
+            producer = new BulldozerProducer();
         } else if (type == Excavator.class) {
-            machines.add((T) new Excavator());
-            machines.add((T) new Excavator());
+            producer = new ExcavatorProducer();
         } else if (type == Truck.class) {
-            machines.add((T) new Truck());
-            machines.add((T) new Truck());
+            producer = new TruckProducer();
+        } else {
+            return new ArrayList<>();
         }
-
-        return machines;
+        return (List<T>) producer.get();
     }
 
     @Override
@@ -35,7 +33,7 @@ public class MachineServiceImpl<T extends Machine> implements MachineService<T> 
 
     @Override
     public void startWorking(List<? extends T> machines) {
-        for (Machine machine : machines) {
+        for (T machine : machines) {
             machine.doWork();
         }
     }

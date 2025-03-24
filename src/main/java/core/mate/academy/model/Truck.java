@@ -1,54 +1,31 @@
 package core.mate.academy.model;
 
 public class Truck extends Machine {
-    private int loadCapacity;
-    private int axles;
-    private String fuelType;
+    private double loadCapacity;
+    private int numberOfWheels;
 
     public Truck() {
     }
 
-    public Truck(int loadCapacity, int axles, String fuelType) {
+    public Truck(double loadCapacity, int numberOfWheels) {
         this.loadCapacity = loadCapacity;
-        this.axles = axles;
-        this.fuelType = fuelType;
+        this.numberOfWheels = numberOfWheels;
     }
 
-    public int getLoadCapacity() {
+    public Truck(int param1, int param2, String param3) {
+        // Конструктор, який у тебе вже є
+    }
+
+    public double getLoadCapacity() {
         return loadCapacity;
     }
 
-    public void setLoadCapacity(int loadCapacity) {
-        this.loadCapacity = loadCapacity;
-    }
-
-    public int getAxles() {
-        return axles;
-    }
-
-    public void setAxles(int axles) {
-        this.axles = axles;
-    }
-
-    public String getFuelType() {
-        return fuelType;
-    }
-
-    public void setFuelType(String fuelType) {
-        this.fuelType = fuelType;
+    public int getNumberOfWheels() {
+        return numberOfWheels;
     }
 
     @Override
     public void doWork() {
         System.out.println("Truck started to work");
-    }
-
-    @Override
-    public String toString() {
-        return "Truck{"
-                + "loadCapacity=" + loadCapacity
-                + ", axles=" + axles
-                + ", fuelType='" + fuelType + '\''
-                + '}';
     }
 }
